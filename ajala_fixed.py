@@ -1,5 +1,4 @@
 #!/home/gokuestc/virtualenv/gokuest.com.ng/pycrawl/3.4/bin/python
-
 import requests
 import xml.etree.ElementTree as ET 
 import json
@@ -9,16 +8,7 @@ import collections
 
 print ("Content-type:application/json\r\n\r\n")
 
-form = cgi.FieldStorage() 
-FlightType = form.getvalue('flight_type') # "Oneway"
-Adults = (form.getvalue('adults')) # 1
-Children = (form.getvalue('children')) # 0
-Infants = (form.getvalue('infants')) # 0
-Departure_airport = form.getvalue('departure_airport') # "LOS"
-Arrival_airport = form.getvalue('arrival_airport') # "LAX"
-Departure_date = form.getvalue('departure_date') # "10/08/2019"
-Arrival_date = form.getvalue('arrival_date') # "10/05/2019"
-Cabin_class = form.getvalue('cabin_class') # "Business"
+
 
 
 def find_airport(code):
@@ -90,6 +80,18 @@ def create_payload(flight_type, adults, children, infants, departure_airport, ar
     #return payload
     return json.dumps(payload)
     
+form = cgi.FieldStorage() 
+FlightType = form.getvalue('flight_type') # "Oneway"
+Adults = (form.getvalue('adults')) # 1
+Children = (form.getvalue('children')) # 0
+Infants = (form.getvalue('infants')) # 0
+Departure_airport = form.getvalue('departure_airport') # "LOS"
+Arrival_airport = form.getvalue('arrival_airport') # "LAX"
+Departure_date = form.getvalue('departure_date') # "10/08/2019"
+Arrival_date = form.getvalue('arrival_date') # "10/05/2019"
+Cabin_class = form.getvalue('cabin_class') # "Business"
+
+print(FlightType, Adults, Children, Infants, Departure_airport, Arrival_airport, Departure_airport, Arrival_date, Departure_date, Cabin_class)
 
 payload = create_payload(FlightType, Adults, Children, Infants, find_airport(Departure_airport), find_airport(Arrival_airport), Departure_date, Arrival_date, Cabin_class)
 
